@@ -14,18 +14,18 @@ public:
     }
 
     int dnc(vector<int> &heights, int start, int end) {
-        if (start == end) {
+        if (start >= end) {
             return heights[start];
         }
 
         int mid = (end+start)/2;
-        int maxL = dnc(heights, start, mid);
+        int maxL = dnc(heights, start, mid-1);
         int maxR = dnc(heights, mid+1, end);
         int minHeight = heights[mid];
         int maxTempArea = minHeight;
 
         // max Area is either the one in the left half, one in the right half, or one spanning both
-        int i = mid, j = mid + 1;
+        int i = mid - 1, j = mid + 1;
         while (i >= start && j <= end) {
             minHeight = min(min(heights[i], heights[j]), minHeight);
             maxTempArea = max(maxTempArea, (j-i+1)*minHeight);
@@ -47,5 +47,5 @@ int main() {
     Solution sol;
     vector<int> heights= {2,1,5,6,2,3};
     vector<int> h1 = {4,2,0,3,2,4,3,4};
-    sol.largestRectangleArea(h1);
+    sol.largestRectangleArea(heights);
 }
