@@ -1,4 +1,7 @@
-#inculde <vector>
+/*
+Link: https://leetcode.com/problems/majority-element/?envType=daily-question&envId=2024-02-10
+*/
+#include <vector>
 using namespace std;
 
 class Solution {

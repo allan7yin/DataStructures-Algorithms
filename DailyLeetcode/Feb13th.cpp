@@ -1,6 +1,10 @@
 #include <vector>
 #include <string>
 
+/*
+Link: https://leetcode.com/problems/find-first-palindromic-string-in-the-array/?envType=daily-question&envId=2024-02-10
+*/
+
 using namespace std;
 
 class Solution {
