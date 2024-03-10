@@ -1,5 +1,6 @@
 // Definition for a binary tree node.
-struct TreeNode {
+struct TreeNode
+{
   int val;
   TreeNode *left;
   TreeNode *right;
@@ -9,34 +10,47 @@ struct TreeNode {
       : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Solution
+{
 public:
-  bool isSubtree(TreeNode *root, TreeNode *subRoot) {
-    if (root == nullptr) {
+  bool isSubtree(TreeNode *root, TreeNode *subRoot)
+  {
+    if (root == nullptr)
+    {
       return false;
     }
-    if (subRoot == nullptr) {
+    if (subRoot == nullptr)
+    {
       return true;
     }
-    if (root->val == subRoot->val) {
-      if (compare(root, subRoot)) {
+    if (root->val == subRoot->val)
+    {
+      if (compare(root, subRoot))
+      {
         return true;
       }
     }
     return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
   }
 
-  bool compare(TreeNode *root, TreeNode *subRoot) {
+  bool compare(TreeNode *root, TreeNode *subRoot)
+  {
     // this helper function makes the assumption that root->val and subRoot->val
     // are same
-    if (root == nullptr && subRoot == nullptr) {
+    if (root == nullptr && subRoot == nullptr)
+    {
       return true;
-    } else if (root == nullptr || subRoot == nullptr) {
+    }
+    else if (root == nullptr || subRoot == nullptr)
+    {
       return false;
     }
-    if (root->val != subRoot->val) {
+    if (root->val != subRoot->val)
+    {
       return false;
-    } else {
+    }
+    else
+    {
       return compare(root->left, subRoot->left) &&
              compare(root->right, subRoot->right);
     }
