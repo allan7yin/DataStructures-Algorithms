@@ -11,6 +11,8 @@ impl Solution {
 
         // now, why can't we use .into_iter() -> this consumes the vector's, and takes ownership of the vector's memory
         // So, this means that vector_s no longer owns that data, and cannot be accessed. So, will not compile 
+
+        // for loop does not dereference -> char is &char
         for (r, ch) in vector_s.iter().enumerate() {
             while character_set.contains(&ch) && l <= r {
                 character_set.remove(&vector_s[l]); // Efficient removal with slice
