@@ -17,8 +17,9 @@ impl Solution {
         }
 
         while k > 0 && !stack.is_empty() {
-            // say after the above, we are left with 5432222 and this is more than num.len() - k
-            // we need to cut the end off, as the first k will be smallest possible, as this is in ascending order
+            // say after the above, we are left with 5432222 and this is more 
+            // than num.len() - k, we need to cut the end off, as the first k 
+            // will be smallest possible, as this is in ascending order
             stack.pop();
             k -= 1;
         }
