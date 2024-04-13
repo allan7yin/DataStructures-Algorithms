@@ -15,7 +15,6 @@ impl Solution {
                         queue.push_back(front);
                     }
 
-
                     if (i as i32 == k) {
                         if let Some(back) = queue.back() {
                             if *back == 0 {
