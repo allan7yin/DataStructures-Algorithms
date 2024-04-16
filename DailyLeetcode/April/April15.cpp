@@ -12,6 +12,7 @@ struct TreeNode {
 
 class Solution {
   int sum = 0;
+
 public:
   int sumNumbers(TreeNode *root) {
     dfs(root, 0);
@@ -23,7 +24,7 @@ public:
       return;
     }
 
-    // check if is leaf node 
+    // check if is leaf node
     if (!curr->left && !curr->right) {
       // add branch into sum
       sum += ((val * 10) + curr->val);
@@ -34,7 +35,4 @@ public:
     dfs(curr->left, (val * 10) + curr->val);
     dfs(curr->right, (val * 10) + curr->val);
   }
-  
-
-
 };
