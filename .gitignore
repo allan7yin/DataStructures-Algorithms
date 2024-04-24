@@ -2,3 +2,5 @@
 bin/
 something.cpp
 ./Snowflake
+.DS_Store
+.zed
