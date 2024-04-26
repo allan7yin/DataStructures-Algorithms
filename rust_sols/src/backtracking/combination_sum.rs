@@ -1,4 +1,4 @@
-pub struct Solution{}
+pub struct Solution {}
 
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
@@ -24,10 +24,24 @@ impl Solution {
                 return;
             } else if path_sum + current < target {
                 elements.push(current);
-                dfs(index + 1, candidates, result, elements.clone(), target, path_sum + current);
+                dfs(
+                    index + 1,
+                    candidates,
+                    result,
+                    &mut elements.clone(),
+                    target,
+                    path_sum + current,
+                );
 
                 elements.pop();
-                dfs(index + 1, candidates, result, elements.clone(), target, path_sum + current);
+                dfs(
+                    index + 1,
+                    candidates,
+                    result,
+                    &mut elements.clone(),
+                    target,
+                    path_sum + current,
+                );
             }
         }
 
