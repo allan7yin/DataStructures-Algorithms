@@ -10,52 +10,46 @@ pub struct Solution {}
 
 impl Solution {
     pub fn min_falling_path_sum(mut grid: Vec<Vec<i32>>) -> i32 {
-        let mut prev_values: Vec<(i32, usize, i32, usize)> = vec![];
+        let mut min_pairs: Vec<(i32, usize, i32, usize)> = vec![(0, 0, 0, 1)];
         for i in 0..grid.len() {
-            let mut row: &mut Vec<i32> = &mut grid[i];
-            let mut smallest: i32 = row[0];
+            let mut row = &mut grid[i];
+            let mut smallest: i32 = i32::MAX;
             let mut smallest_index: usize = 0;
-            let mut second_smallest: i32 = row[0];
+            let mut second_smallest: i32 = i32::MAX;
             let mut second_smallest_index: usize = 0;
 
+            // add min_pairs.last() onto the current row
+            // in this loop, we also track the smallest and second smallest values in this row
             for j in 0..row.len() {
-                if row[j] < smallest {
-                    smallest = row[j];
-                    smallest_index = j;
-                } else if row[j] < second_smallest {
-                    second_smallest = row[j];
-                    second_smallest_index = j;
-                }
-            }
-            if i == 0 {
-                //means the first row, add to prev_values and continue
-                prev_values.push((
-                    smallest,
-                    smallest_index,
-                    second_smallest,
-                    second_smallest_index,
-                ));
-                continue;
-            }
-            // we have 2 smallest ones, we now populate these as tuples into dp
-            for j in 0..row.len() {
-                if let Some(last_row) = prev_values.last() {
-                    let temp = *last_row;
-                    if j == temp.1 {
+                if let Some(last) = min_pairs.last() {
+                    let temp = *last;
+                    if j != temp.1 {
                         row[j] += temp.0;
                     } else {
-                        row[j] += temp.2; // Use second_smallest instead of smallest
+                        row[j] += temp.2;
+                    }
+
+                    // assign smallest and second_smallest
+                    if row[j] < smallest {
+                        smallest = row[j];
+                        smallest_index = j;
+                    } else if row[j] < second_smallest {
+                        second_smallest = row[j];
+                        second_smallest_index = j;
                     }
                 }
             }
+
+            // push onto the min_pairs
+            min_pairs.push((
+                smallest,
+                smallest_index,
+                second_smallest,
+                second_smallest_index,
+            ));
         }
 
-        // return the min value inside of last row in grid
-        let mut min_sum = i32::MAX;
-        for num in &grid[grid.len() - 1] {
-            min_sum = min(min_sum, *num);
-        }
-
-        min_sum
+        // now find the min sum
+        min_pairs.last().unwrap().0
     }
 }
