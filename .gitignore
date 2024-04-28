@@ -4,3 +4,4 @@ something.cpp
 ./Snowflake
 .DS_Store
 .zed
+./rust_sols/target/
