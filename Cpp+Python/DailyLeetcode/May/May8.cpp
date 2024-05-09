@@ -1,8 +1,8 @@
-#include <algorithm>
+include<algorithm>
 #include <string>
 #include <unordered_map>
 #include <vector>
-using namespace std;
+    using namespace std;
 
 class Solution {
 public:
