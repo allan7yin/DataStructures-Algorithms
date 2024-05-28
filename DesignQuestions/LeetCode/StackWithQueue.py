@@ -7,7 +7,6 @@ from collections import deque
         - now, newly pushed element is at beginning of the queue
 """
 
-
 class MyStack:
     def __init__(self):
         self.mainq = deque()
