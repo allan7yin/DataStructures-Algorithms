@@ -1,22 +1,18 @@
+#include <string>
+
+using namespace std;
+
 class Solution {
 public:
-  int longestPalindrome(string s) {
-    // simple hashmap question
-    int length = 0;
-    int maxOdd = 0;
-    unordered_map<char, int> fmap;
+  int appendCharacters(string s, string t) {
+    int count = t.size();
+    int t_index = 0;
     for (int i = 0; i < s.size(); i++) {
-      fmap[s[i]]++;
-    }
-
-    for (auto kv_pair : fmap) {
-      if (kv_pair.second % 2 == 0) {
-        length += kv_pair.second;
-      } else {
-        maxOdd = max(maxOdd, kv_pair.second);
+      if (s[i] == t[t_index]) {
+        t_index++;
+        count--;
       }
     }
-    length += maxOdd;
-    return length;
+    return count;
   }
 };
