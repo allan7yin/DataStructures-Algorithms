@@ -5,14 +5,16 @@ using namespace std;
 /*
 523. Continuous Subarray Sum
 
-This problem, and important thing to remeber is that say we have an array nums. When working with a modulo k,
-if two prefix sums have the same remainder when divided by k, the elements between these two prefix sums sum up
-to a multiple of k
+This problem, and important thing to remeber is that say we have an array nums.
+When working with a modulo k, if two prefix sums have the same remainder when
+divided by k, the elements between these two prefix sums sum up to a multiple of
+k
 
-So, we add the earliest index seen for a certain prefix, and if we see it again, we know we have subarray that
-sums to multiple of k
+So, we add the earliest index seen for a certain prefix, and if we see it again,
+we know we have subarray that sums to multiple of k
 
-Review this -> prefix sum + hashmap is a very common pattern for solving subarray problems
+Review this -> prefix sum + hashmap is a very common pattern for solving
+subarray problem
 */
 
 class Solution {

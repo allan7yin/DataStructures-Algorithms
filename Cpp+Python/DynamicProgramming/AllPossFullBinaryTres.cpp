@@ -1,6 +1,6 @@
-#include <vector>
-#include <utility>
 #include <unordered_map>
+#include <utility>
+#include <vector>
 using namespace std;
 
 // Definition for a binary tree node.
@@ -24,12 +24,12 @@ public:
     return dfs(n, dp);
   }
 
-  vector<TreeNode* > dfs(int n, unordered_map<int, vector<TreeNode *>> &dp) {
+  vector<TreeNode *> dfs(int n, unordered_map<int, vector<TreeNode *>> &dp) {
     if (n == 0) {
       return {};
     }
-    if (n== 1) {
-      TreeNode* curr = new TreeNode();
+    if (n == 1) {
+      TreeNode *curr = new TreeNode();
       return {curr};
     }
     if (dp.find(n) != dp.end()) {
@@ -37,7 +37,7 @@ public:
     }
 
     vector<TreeNode *> results;
-    // now, recurse, splitting the nodes to the left and the right 
+    // now, recurse, splitting the nodes to the left and the right
     for (int l = 0; l < n; l++) {
       int r = n - l - 1;
       vector<TreeNode *> left_subtree = dfs(l, dp);
