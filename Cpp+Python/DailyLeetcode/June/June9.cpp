@@ -21,7 +21,8 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             prefix += nums[i];
             prefix %= k;
-            
+           
+            // we want remainder from [0,k], so if negative, we add k to the prefix
             if (prefix < 0) {
                 prefix += k;
             }
