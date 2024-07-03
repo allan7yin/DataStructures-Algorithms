@@ -1,7 +1,8 @@
 .vscode/
 bin/
-something.cpp
+something.cc
 ./Snowflake
 .DS_Store
 .zed
 ./rust_sols
+./dailyGroupWars/CitadelOA1/
