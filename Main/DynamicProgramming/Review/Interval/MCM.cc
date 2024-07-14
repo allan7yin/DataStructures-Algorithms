@@ -20,48 +20,53 @@ The minimum number is 1*2*3 + 1*3*4 + 1*4*3 = 30
 */
 
 // solution is similar to how you would solve minimum cost tree from leaf values
-// recursively, we split the interval in half, and look for the minimum from there
+// recursively, we split the interval in half, and look for the minimum from
+// there
 
 int dp[100][100];
 // top-down memoized recursion
 int fmem(int p[], int i, int j) {
-    // base
-    if (i == j) {
-        return 0;
-    }
+  // base
+  if (i == j) {
+    return 0;
+  }
 
-    // check if memoized
-    if (dp[i][j] != -1) return dp[i][j];
-
-    dp[i][j] = INT_MAX;
-    // every possible split
-    for (int k = i; k < j; k++) {
-        dp[i][j] = min(dp[i][j], (p[i - 1] * p[k] * p[j]) + fmem(p, i, k) + fmem(p, k + 1, j));
-    }
+  // check if memoized
+  if (dp[i][j] != -1)
     return dp[i][j];
+
+  dp[i][j] = INT_MAX;
+  // every possible split
+  for (int k = i; k < j; k++) {
+    dp[i][j] = min(dp[i][j], (p[i - 1] * p[k] * p[j]) + fmem(p, i, k) +
+                                 fmem(p, k + 1, j));
+  }
+  return dp[i][j];
 }
 
 // naive recursive solution
 int fnaive(int p[], int i, int j) {
-    // base
-    if (i == j) {
-        return 0;
-    }
+  // base
+  if (i == j) {
+    return 0;
+  }
 
-    int minOps = INT_MAX;
-    // every possible split
-    for (int k = i; k < j; k++) {
-        minOps = min(minOps, (p[i - 1] * p[k] * p[j]) + fnaive(p, i, k) + fnaive(p, k + 1, j));
-    }
-    return minOps;
+  int minOps = INT_MAX;
+  // every possible split
+  for (int k = i; k < j; k++) {
+    minOps = min(minOps, (p[i - 1] * p[k] * p[j]) + fnaive(p, i, k) +
+                             fnaive(p, k + 1, j));
+  }
+  return minOps;
 }
 
 // Driver Code
 int main() {
-    int arr[] = {1, 2, 3, 4, 3};
-    int N = sizeof(arr) / sizeof(arr[0]);
-    // Function call
-    memset(dp, -1, sizeof(dp));
-    cout << "Minimum number of multiplications is " << fmem(arr, 1, N - 1) << endl;
-    return 0;
+  int arr[] = {1, 2, 3, 4, 3};
+  int N = sizeof(arr) / sizeof(arr[0]);
+  // Function call
+  memset(dp, -1, sizeof(dp));
+  cout << "Minimum number of multiplications is " << fmem(arr, 1, N - 1)
+       << endl;
+  return 0;
 }
