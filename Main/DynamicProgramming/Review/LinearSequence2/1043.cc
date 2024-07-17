@@ -21,3 +21,27 @@ class Solution {
         return dp[n];
     }
 };
+
+// do this top-down
+int dp[500][501];
+
+class Solution {
+  public:
+    int maxSumAfterPartitioning(vector<int> &arr, int k) {
+        memset(dp, -1, sizeof(dp));
+        return f(0, arr, k);
+    }
+
+    int f(int i, vector<int> &arr, int k) {
+        if (i >= arr.size()) return 0;
+        if (dp[i][k] != -1) return dp[i][k];
+
+        int maxl = 0;
+        for (int j = 0; j < k && i + j < arr.size(); j++) {
+            // sub-array of length at most k
+            maxl = max(maxl, arr[i + j]);
+            dp[i][k] = max(dp[i][k], (maxl * (j + 1)) + f(i + j + 1, arr, k));
+        }
+        return dp[i][k];
+    }
+};
