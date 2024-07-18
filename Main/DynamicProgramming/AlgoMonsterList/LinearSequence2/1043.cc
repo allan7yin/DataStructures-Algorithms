@@ -23,8 +23,9 @@ class Solution {
 };
 
 // do this top-down
-int dp[500][501];
+int dp[500];
 
+// do this top-down
 class Solution {
   public:
     int maxSumAfterPartitioning(vector<int> &arr, int k) {
@@ -34,14 +35,14 @@ class Solution {
 
     int f(int i, vector<int> &arr, int k) {
         if (i >= arr.size()) return 0;
-        if (dp[i][k] != -1) return dp[i][k];
+        if (dp[i] != -1) return dp[i];
 
         int maxl = 0;
         for (int j = 0; j < k && i + j < arr.size(); j++) {
             // sub-array of length at most k
             maxl = max(maxl, arr[i + j]);
-            dp[i][k] = max(dp[i][k], (maxl * (j + 1)) + f(i + j + 1, arr, k));
+            dp[i] = max(dp[i], (maxl * (j + 1)) + f(i + j + 1, arr, k));
         }
-        return dp[i][k];
+        return dp[i];
     }
 };
