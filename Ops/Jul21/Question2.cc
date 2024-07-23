@@ -17,7 +17,7 @@ struct Dependency {
 class Scheduler {
 public:
   // Remember, to do a topological sort, or rather cycle detection, we need only
-  // to compute a DFS when we're not in a LL setting
+  // // to compute a DFS when we're not in a LL setting
   void dfs(int u, vector<int> colour) {
     colour[u] = 1;
     for (auto &n : startG[u]) {
