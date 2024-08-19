@@ -3,15 +3,21 @@
 
 using namespace std;
 
+/*
+Of course, we want to schedule most frequent tasks as soon as possible
+["A","A","A","B","B","B"]
+
+the trick is => we will use a pq to keep track of the ready tasks, to get the most frequent one
+then we will use a queue to keep track of when tasks are ready to be popped
+*/
 class Solution {
   public:
     int leastInterval(vector<char> &tasks, int n) {
-        // minheap of freq, as we most freq to run as early as possible
+        // compute frequency map
         priority_queue<int> pq;
-        queue<pair<int, int>> q;     // freq, finish
-        unordered_map<char, int> mp; // map the task to the count of it
-
-        for (char &task : tasks) {
+        queue<pair<int, int>> q; // freq, finish time
+        unordered_map<char, int> mp;
+        for (auto &task : tasks) {
             mp[task]++;
         }
 
@@ -20,13 +26,17 @@ class Solution {
         }
 
         int time = 0;
-        while (!q.empty() || !pq.empty()) {
+        while (!pq.empty() || !q.empty()) {
             time++;
             if (!pq.empty()) {
+                // can do this task
                 int top = pq.top();
-                if (top > 1) q.push({top - 1, time + n});
+                if (top > 1) {
+                    q.push({top - 1, time + n});
+                }
                 pq.pop();
             } else {
+                // nothing is available, move the time to the next one, a.k.a time of first in queue
                 time = q.front().second;
             }
 
@@ -35,6 +45,7 @@ class Solution {
                 q.pop();
             }
         }
+
         return time;
     }
 };
