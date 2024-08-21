@@ -6,10 +6,6 @@ using namespace std;
 // bfs from every rotten orange
 class Solution {
   public:
-    // void f(vector<vector<int>> &grid, int r, int c, int fresh, int mins) {
-    //     if (r < 0 || c < 0 || r >= grid.size() || c >= grid[0].size()) return;
-    //     if ()
-    // }
     int orangesRotting(vector<vector<int>> &grid) {
         // count number of fresh oranges in the beginning
         int fresh = 0;
@@ -26,11 +22,10 @@ class Solution {
 
         // run bfs
         int count = 0;
-        while (!dq.empty()) {
-            count++;
+        while (!dq.empty() && fresh > 0) {
             int size = dq.size();
             for (int i = 0; i < size; i++) {
-                // push adjcacent sqares onto this if they are fresh
+                // push adjacent squares onto this if they are fresh
                 auto top = dq.front();
                 int r = top.first, c = top.second;
                 dq.pop_front();
@@ -56,6 +51,7 @@ class Solution {
                     fresh--;
                 }
             }
+            count++;
         }
         return (fresh == 0) ? count : -1;
     }
