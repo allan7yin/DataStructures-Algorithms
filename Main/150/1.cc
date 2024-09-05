@@ -1,4 +1,5 @@
-#include <unordered_set>
+#include <iostream>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -15,3 +16,7 @@ class Solution {
         return {};
     }
 };
+
+int main() {
+    cout << "Hello world" << endl;
+}
