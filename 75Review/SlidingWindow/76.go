@@ -8,49 +8,49 @@ package SlidingWindow
 - time complexity is O(n)
 */
 import (
-  "math"
+	"math"
 )
 
 func minWindows(s string, t string) string {
-  solL, solR, minLength := 0, 0, math.MaxInt
-  tMap := make(map[rune]int)
-  window := make(map[rune]int)
+	solL, solR, minLength := 0, 0, math.MaxInt
+	tMap := make(map[rune]int)
+	window := make(map[rune]int)
 
-  for _, ch := range t {
-    tMap[ch]++
-  }
+	for _, ch := range t {
+		tMap[ch]++
+	}
 
-  l, have, need := 0, 0, len(tMap)
+	l, have, need := 0, 0, len(tMap)
 
-  for r, ch := range s {
-    if _, ok := tMap[ch]; ok {
-      window[ch]++
-      if window[ch] == tMap[ch] {
-        have++
-      }
-    }
+	for r, ch := range s {
+		if _, ok := tMap[ch]; ok {
+			window[ch]++
+			if window[ch] == tMap[ch] {
+				have++
+			}
+		}
 
-    for have == need {
-      if r - l + 1 < minLength {
-        solL = l
-        solR = r
-        minLength = r - l + 1
-      }
+		for have == need {
+			if r-l+1 < minLength {
+				solL = l
+				solR = r
+				minLength = r - l + 1
+			}
 
-      leftChar := rune(s[l])
-      if _, ok := tMap[leftChar]; ok {
-        if window[leftChar] == tMap[leftChar] {
-          have--
-        }
-        window[leftChar]--
-      }
+			leftChar := rune(s[l])
+			if _, ok := tMap[leftChar]; ok {
+				if window[leftChar] == tMap[leftChar] {
+					have--
+				}
+				window[leftChar]--
+			}
 
-      l++
-    }
-  }
+			l++
+		}
+	}
 
-  if minLength == math.MaxInt {
-    return ""
-  }
-  return s[solL : solR + 1]
+	if minLength == math.MaxInt {
+		return ""
+	}
+	return s[solL : solR+1]
 }
