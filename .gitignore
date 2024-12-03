@@ -1,10 +1,9 @@
 .vscode/
 bin/
 something.cc
-./Snowflake
+src/Snowflake
 .DS_Store
 .zed
-./rust_sols/
-/dailyGroupWars/cit1/
-/Main/DynamicProgamming/Hmmmm
-./go_sols/
+src/dailyGroupWars/cit1/
+src/Main/DynamicProgamming/Hmmmm
+/rust/target/
