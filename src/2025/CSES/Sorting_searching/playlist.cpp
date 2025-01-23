@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -11,8 +11,8 @@ int main() {
     int n;
     cin >> n;
 
-    vector<long long> songs;
-    unordered_map<long long, int> seen;
+    vector<int> songs;
+    map<int, int> seen;
 
     for (int i = 0; i < n; i++) {
         int num;
@@ -21,10 +21,10 @@ int main() {
     }
 
     int l = 0;
-    long long maxVal = 0;
+    int maxVal = 0;
 
     for (int i = 0; i < n; i++) {
-        long long song = songs[i];
+        int song = songs[i];
 
         if (seen.find(song) == seen.end()) {
             seen[song] = i;
@@ -36,7 +36,7 @@ int main() {
             seen[song] = i;
         }
 
-        maxVal = max(maxVal, (long long)i - l + 1);
+        maxVal = max(maxVal, i - l + 1);
     }
 
     cout << maxVal << endl;
