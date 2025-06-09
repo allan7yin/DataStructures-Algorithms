@@ -1,9 +1,7 @@
 .vscode/
-bin/
 something.cc
 src/Snowflake
 .DS_Store
-.zed
 src/dailyGroupWars/cit1/
 src/Main/DynamicProgamming/Hmmmm
 /rust/target/
